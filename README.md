@@ -6,66 +6,87 @@ To implement Erosion and Dilation using Python and OpenCV.
 2. OpenCV
 ## Algorithm:
 ### Step1:
-Import the necessary pacakages
+Import the necessary packages
+
+
 ### Step2:
-Create the text using cv2.putText
+Create the Text using cv2.putText
+
 ### Step3:
-Create the structuring element
+Create the Text using cv2.putText
+
 ### Step4:
-Erode the image
+Create the structuring element
+
 ### Step5:
-Dilate the Image
+Erode the image and Dilate the image.
+
+ 
 ## Program:
-``` Python
-Developed by : MUKESH P
-Register Number : 212222240068
-```
+
+``` 
 # Import the necessary packages
-```python
-import numpy as np
 import cv2
+import numpy as np
 import matplotlib.pyplot as plt
-```
+# Step 1: Create a blank image
+image = np.zeros((300, 600, 3), dtype="uint8")
+
 # Create the Text using cv2.putText
-```python
-img = np.zeros((100,400),dtype = 'uint8')
+# Step 2: Create the text using cv2.putText
+text = "MUKESH"
 font = cv2.FONT_HERSHEY_SIMPLEX
-cv2.putText(img ,'A A D I',(80,70),font,2,(255),5,cv2.LINE_AA)
-plt.imshow(img)
-plt.axis('off')
-```
+cv2.putText(image, text, (50, 150), font, 2, (255, 255, 255), 3)
+
+
 # Create the structuring element
-```python
-kernel = np.ones((5,5),np.uint8)
-kernel1 = cv2.getStructuringElement(cv2.MORPH_CROSS,(5,5))
-cv2.erode(img,kernel)
-```
+kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
+
 # Erode the image
-```python
-img_erode = cv2.erode(img,kernel1)
-plt.imshow(img_erode)
-plt.axis('off')
-```
+eroded_image = cv2.erode(image, kernel, iterations=1)
+
 # Dilate the image
-```python
-img_dilate = cv2.dilate(img,kernel1)
-plt.imshow(img_dilate)
-plt.axis('off')
+dilated_image = cv2.dilate(image, kernel, iterations=1)
+
+# Convert images from BGR to RGB for Matplotlib
+image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+eroded_image_rgb = cv2.cvtColor(eroded_image, cv2.COLOR_BGR2RGB)
+dilated_image_rgb = cv2.cvtColor(dilated_image, cv2.COLOR_BGR2RGB)
+
+# Plot the original, eroded, and dilated images using Matplotlib
+plt.figure(figsize=(10, 5))
+
+plt.imshow(image_rgb)
+plt.title("Original Image")
+plt.axis("off")
+
+plt.figure(figsize=(10, 5))
+plt.imshow(eroded_image_rgb)
+plt.title("Eroded Image")
+plt.axis("off")
+
+plt.figure(figsize=(10, 5))
+plt.imshow(dilated_image_rgb)
+plt.title("Dilated Image")
+plt.axis("off")
+
+
 ```
 ## Output:
 
 ### Display the input Image
-![image](https://github.com/22009011/erosion--dilation/assets/118343461/1acaf154-800c-4db6-8617-814a600237c9)
+![WhatsApp Image 2024-10-16 at 15 04 42_b5c18d69](https://github.com/user-attachments/assets/21715f31-0d9c-4ce5-ac8c-8edb96c243a8)
+
 
 
 
 ### Display the Eroded Image
-![image](https://github.com/22009011/erosion--dilation/assets/118343461/8a52c946-0c72-4c30-af20-b6b59719f4c5)
+![WhatsApp Image 2024-10-16 at 15 04 46_6780b17b](https://github.com/user-attachments/assets/a7f309c8-58e9-416f-9dea-c03070ce9484)
 
 
 
 ### Display the Dilated Image
-![image](https://github.com/22009011/erosion--dilation/assets/118343461/f3c31b0f-25bc-4e26-88fb-be2503776950)
+![WhatsApp Image 2024-10-16 at 15 04 51_da189ba7](https://github.com/user-attachments/assets/2a51d344-b069-4318-a63a-965442dccbe8)
 
 
 
